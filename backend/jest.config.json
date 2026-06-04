@@ -1,0 +1,30 @@
+{
+  "testEnvironment": "node",
+  "transform": {},
+  "testMatch": [
+    "**/tests/**/*.test.js"
+  ],
+  "testPathIgnorePatterns": [
+    "/node_modules/",
+    "/tests/load/"
+  ],
+  "collectCoverageFrom": [
+    "src/services/**/*.js",
+    "src/routes/**/*.js",
+    "src/middleware/**/*.js",
+    "!src/config/**"
+  ],
+  "coverageThresholds": {
+    "global": {
+      "lines":      70,
+      "functions":  70,
+      "branches":   60,
+      "statements": 70
+    }
+  },
+  "coverageReporters": ["text", "lcov", "json-summary"],
+  "testTimeout": 15000,
+  "verbose": true,
+  "forceExit": true,
+  "detectOpenHandles": true
+}

@@ -1,0 +1,91 @@
+# render.yaml — GymBuddy Backend (Render.com)
+# https://render.com/docs/yaml-spec
+# Push to GitHub → Render auto-deploys on every merge to main
+
+services:
+  - type: web
+    name: gymbuddy-api
+    runtime: node
+    region: oregon          # oregon | frankfurt | singapore | ohio
+    plan: starter           # free | starter | standard | pro
+    branch: main
+
+    # Build
+    buildCommand: cd backend && npm install
+    startCommand: cd backend && npm start
+
+    # Health check — Render uses this to know the service is up
+    healthCheckPath: /api/health
+
+    # Auto-deploy on push to main
+    autoDeploy: true
+
+    # Scale settings (starter plan)
+    scaling:
+      minInstances: 1
+      maxInstances: 3
+      targetMemoryPercent: 80
+      targetCPUPercent: 80
+
+    # Environment variables
+    # Set secret values in the Render dashboard — do NOT commit real values
+    envVars:
+      - key: NODE_ENV
+        value: production
+
+      - key: PORT
+        value: 5000
+
+      - key: JWT_SECRET
+        sync: false           # Mark as secret — set via Render dashboard
+
+      - key: JWT_EXPIRY
+        value: 30d
+
+      - key: MONGODB_URI
+        sync: false           # Set via Render dashboard
+
+      - key: CLOUDINARY_CLOUD_NAME
+        sync: false
+
+      - key: CLOUDINARY_API_KEY
+        sync: false
+
+      - key: CLOUDINARY_API_SECRET
+        sync: false
+
+      - key: ALLOWED_ORIGINS
+        value: https://gymbuddy.vercel.app
+
+      - key: LOG_LEVEL
+        value: info
+
+      - key: LOG_FORMAT
+        value: json
+
+      - key: LOG_TO_FILE
+        value: "false"         # Render captures stdout; file logging not needed
+
+      - key: ENABLE_METRICS
+        value: "true"
+
+      - key: MONITORING_SECRET
+        sync: false
+
+      - key: FEATURE_AI_MATCHING
+        value: "true"
+
+      - key: FEATURE_STREAK_VERIFICATION
+        value: "true"
+
+      - key: FEATURE_REWARDS
+        value: "true"
+
+      - key: ENABLE_MAINTENANCE_MODE
+        value: "false"
+
+    # Persistent disk (for mock DB / uploaded files in starter tier)
+    # disk:
+    #   name: gymbuddy-data
+    #   mountPath: /app/backend/data
+    #   sizeGB: 1

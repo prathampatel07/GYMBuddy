@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Plus Jakarta Sans', sans-serif;
+  
+  /* Gym Buddy Premium Color Palette */
+  --color-gym-green: #10b981;      /* Emerald Green */
+  --color-gym-teal: #14b8a6;       /* Teal */
+  --color-gym-orange: #f97316;     /* Coral / Orange */
+  --color-gym-dark: #0a0e1a;       /* Deep Space Blue/Black */
+  --color-gym-card: #111827;       /* Card BG */
+  --color-gym-border: #1f2937;     /* Borders */
+  --color-gym-glow: rgba(16, 185, 129, 0.15);
+
+  /* Animations */
+  --animate-fadeIn: fadeIn 0.3s ease-out;
+  --animate-slideDown: slideDown 0.25s ease-out;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-gym-dark);
+  color: #f3f4f6;
+  margin: 0;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar for Premium Feel */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-gym-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-gym-border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gym-green);
+}
+
+/* Hide scrollbar but keep functionality */
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+/* Keyframe Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes confettiFall {
+  0%   { transform: translateY(0) rotate(0deg);   opacity: 1; }
+  100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+}
+
+/* Utility animation classes */
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-out both;
+}
+
+.animate-slideDown {
+  animation: slideDown 0.25s ease-out both;
+}
+
