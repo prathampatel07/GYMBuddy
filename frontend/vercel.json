@@ -37,10 +37,6 @@
         }
       ]
     }
-  ],
-  "env": {
-    "VITE_API_URL": "@gymbuddy-api-url",
-    "VITE_APP_NAME": "GymBuddy",
-    "VITE_APP_ENV": "production"
-  }
+  ]
+  
 }
