@@ -57,10 +57,10 @@ router.post('/register', authLimiter, validateRegister, async (req, res) => {
       email,
       password: hashedPassword,
       name: name || '',
-      age: age ? Number(age) : 0,
+      age: age ? Number(age) : undefined,
       gender: gender || '',
-      height: height ? Number(height) : 0,
-      weight: weight ? Number(weight) : 0,
+      height: height ? Number(height) : undefined,
+      weight: weight ? Number(weight) : undefined,
       fitnessLevel: fitnessLevel || 'Beginner',
       profilePhotoUrl: photoUrl,
       coins: 100, // Welcome coins
