@@ -132,7 +132,7 @@ jobs:
       - name: Build frontend
         run: npm run build --prefix frontend
         env:
-          VITE_API_URL: https://gymbuddy-api.onrender.com/api
+          VITE_API_URL: https://gymbuddy-api-production.up.railway.app/
           VITE_APP_NAME: GymBuddy
           VITE_APP_ENV: production
 
