@@ -1,4 +1,6 @@
-const API_URL = 'https://gymbuddy-api-production.up.railway.app/api';
+const API_URL =
+  import.meta.env.VITE_API_URL ||
+  'https://gymbuddy-api-production.up.railway.app/api';
 
 const getHeaders = () => {
   const token = localStorage.getItem('token');
