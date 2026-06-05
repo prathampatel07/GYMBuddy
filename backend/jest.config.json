@@ -14,7 +14,7 @@
     "src/middleware/**/*.js",
     "!src/config/**"
   ],
-  "coverageThresholds": {
+  "coverageThreshold": {
     "global": {
       "lines":      70,
       "functions":  70,

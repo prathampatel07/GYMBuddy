@@ -74,7 +74,11 @@ app.get('/', (req, res) => {
 });
 
 // Legacy /api/health redirects to monitoring route
-app.get('/api/health', (req, res) => res.redirect('/api/monitoring/health'));
+app.get('/api/health', (req, res) => {
+  res.status(200).json({
+    status: 'ok'
+  });
+});
 
 // ── 404 Handler ───────────────────────────────────────────────────────────
 app.use((req, res) => {
