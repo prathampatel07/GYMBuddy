@@ -150,35 +150,7 @@ jobs:
           path: frontend/dist/
           retention-days: 7
 
-  # ── Job 5: Deploy to Render (Backend) — main branch only ───────────────────
-  deploy-backend:
-    name: 🚀 Deploy Backend (Render)
-    runs-on: ubuntu-latest
-    needs: [unit-tests, integration-tests]
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-    environment:
-      name: production
-      url: https://gymbuddy-api.onrender.com
-    steps:
-      - name: Trigger Render deploy hook
-        run: |
-          curl -s -X POST "${{ secrets.RENDER_DEPLOY_HOOK_URL }}" \
-            -H "Content-Type: application/json" \
-            | tee /tmp/render_response.json
-          echo "✅ Render deploy triggered"
-
-      - name: Wait for Render health check
-        run: |
-          echo "⏳ Waiting 60s for Render to spin up..."
-          sleep 60
-          MAX_RETRIES=10
-          RETRY=0
-          until curl -sf https://gymbuddy-api.onrender.com/api/health; do
-            echo "Health check attempt $((++RETRY))/$MAX_RETRIES..."
-            [ $RETRY -ge $MAX_RETRIES ] && echo "❌ Health check failed!" && exit 1
-            sleep 15
-          done
-          echo "✅ Backend is healthy!"
+  
 
   # ── Job 6: Deploy to Vercel (Frontend) — main branch only ──────────────────
   deploy-frontend:
